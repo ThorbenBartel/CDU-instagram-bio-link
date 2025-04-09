@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anna Kuhs | CDU Essen-Kray</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/inter-ui/3.19.3/inter.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/IBM-Plex-Serif/4.0.3/fonts/complete/woff/IBMPlexSerif-Regular.woff" rel="stylesheet">
+    <style>
+        :root {
+            /* CDU Colors from the design manual */
+            --cadenabbia-turkis: #52b7c1;
+            --rhondorf-blau: #2d3c4b;
+            --union-gold: #ffa600;
+            --white: #ffffff;
+            --rhondorf-blau-25: #bec1c7;
+            --rhondorf-blau-60: #737986;
+            --cadenabbia-turkis-10: #f2f8fa;
+            --cadenabbia-turkis-25: #ddeef1;
+            --cadenabbia-turkis-60: #a7d5dc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--cadenabbia-turkis);
+            color: var(--rhondorf-blau);
+            line-height: 1.5;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .serif {
+            font-family: 'IBM Plex Serif', serif;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        /* Header Section */
+        .header {
+            background-color: var(--white);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .logo {
+            height: 40px;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            background-color: var(--cadenabbia-turkis);
+            padding: 40px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-img-container {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid white;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .headline {
+            font-weight: 800; /* extrabold */
+            font-size: 28px;
+            color: white;
+            margin-bottom: 10px;
+            text-align: center;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .subline {
+            font-family: 'IBM Plex Serif', serif;
+            font-size: 16px;
+            color: white;
+            margin-bottom: 20px;
+            text-align: center;
+            background-color: var(--rhondorf-blau);
+            padding: 5px 15px;
+        }
+
+        /* CDU Bogen element */
+        .bogen {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 60%;
+            height: auto;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        /* Video Section */
+        .video-section {
+            background-color: var(--white);
+            padding: 30px 20px;
+        }
+        
+        .section-title {
+            font-weight: 800;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--rhondorf-blau);
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 5px;
+            background-color: var(--union-gold);
+        }
+
+        .video-container {
+            width: 100%;
+            position: relative;
+            margin-bottom: 20px;
+            border: 3px solid var(--rhondorf-blau);
+            overflow: hidden;
+        }
+        
+        .video-container video {
+            width: 100%;
+            display: block;
+        }
+        
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background-color: var(--union-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .play-button::before {
+            content: '';
+            border-style: solid;
+            border-width: 15px 0 15px 25px;
+            border-color: transparent transparent transparent var(--white);
+            margin-left: 5px;
+        }
+
+        .about-text {
+            font-family: 'IBM Plex Serif', serif;
+            line-height: 1.6;
+        }
+
+        /* Links Section */
+        .links-section {
+            padding: 30px 20px;
+            background-color: var(--cadenabbia-turkis-10);
+        }
+
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .link-item {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .link-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .link-item a {
+            display: flex;
+            padding: 15px 20px;
+            text-decoration: none;
+            color: var(--rhondorf-blau);
+            font-weight: 600;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .link-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .link-icon {
+            background-color: var(--cadenabbia-turkis-25);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .link-arrow {
+            color: var(--union-gold);
+            font-weight: bold;
+            font-size: 20px;
+            transition: transform 0.2s ease;
+        }
+
+        .link-item:hover .link-arrow {
+            transform: translateX(5px);
+        }
+
+        .featured-link {
+            background-color: var(--rhondorf-blau);
+        }
+
+        .featured-link a {
+            color: var(--white);
+        }
+
+        .featured-link .link-icon {
+            background-color: var(--union-gold);
+            color: var(--rhondorf-blau);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background-color: var(--cadenabbia-turkis);
+            padding: 30px 20px;
+        }
+
+        .contact-title {
+            color: var(--white);
+        }
+
+        .contact-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-item {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 12px 20px;
+            color: var(--rhondorf-blau);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .contact-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: var(--cadenabbia-turkis);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: var(--white);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--rhondorf-blau);
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .social-link:hover {
+            background-color: var(--union-gold);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--rhondorf-blau);
+            color: var(--white);
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* Gold circle for CTA */
+        .cta-circle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 80px;
+            height: 80px;
+            background-color: var(--union-gold);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--rhondorf-blau);
+            font-weight: 700;
+            font-size: 14px;
+            text-align: center;
+            line-height: 1.2;
+            transform: rotate(10deg);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* Responsive tweaks */
+        @media (max-width: 480px) {
+            .headline {
+                font-size: 24px;
+            }
+            
+            .subline {
+                font-size: 14px;
+            }
+            
+            .section-title {
+                font-size: 20px;
+            }
+            
+            .play-button {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .play-button::before {
+                border-width: 10px 0 10px 18px;
+            }
+            
+            .cta-circle {
+                width: 70px;
+                height: 70px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header with logo -->
+        <header class="header">
+            <img src="https://placehold.co/120x40/52b7c1/ffffff" alt="CDU Logo" class="logo">
+        </header>
+
+        <!-- Profile section -->
+        <section class="profile-section">
+            <div class="profile-content">
+                <div class="profile-img-container">
+                    <img src="https://placehold.co/300x300" alt="Anna Kuhs" class="profile-img">
+                </div>
+                <h1 class="headline">Anna Kuhs</h1>
+                <div class="subline serif">CDU Ratskandidatin Essen-Kray-Leithe</div>
+            </div>
+            
+            <!-- CDU Bogen design element -->
+            <svg class="bogen" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                <path d="M300 0V300H0C0 134.315 134.315 0 300 0Z" fill="white"/>
+            </svg>
+            
+            <!-- Gold circle CTA -->
+            <div class="cta-circle">
+                JETZT<br>KONTAKT<br>AUFNEHMEN
+            </div>
+        </section>
+
+        <!-- Video Section -->
+        <section class="video-section">
+            <h2 class="section-title">Über mich</h2>
+            <div class="video-container">
+                <video controls poster="https://placehold.co/600x338/2d3c4b/ffffff">
+                    <source src="#" type="video/mp4">
+                    Dein Browser unterstützt keine Videos.
+                </video>
+                <div class="play-button"></div>
+            </div>
+            <p class="about-text serif">Mit meiner Erfahrung aus Kommunikation und Politik setze ich mich für Essen-Kray ein. Meine drei Schwerpunkte sind moderne Stadtentwicklung, lebendige Gemeinschaft und zukunftsfähige Verkehrskonzepte für unseren Stadtteil. Gemeinsam können wir Kray-Leithe voranbringen!</p>
+        </section>
+
+        <!-- Links Section -->
+        <section class="links-section">
+            <h2 class="section-title">Meine Themen</h2>
+            <div class="links-container">
+                <div class="link-item featured-link">
+                    <a href="#">
+                        <div class="link-title">
+                            <div class="link-icon">📋</div>
+                            <span>Mein Wahlprogramm</span>
+                        </div>
+                        <div class="link-arrow">→</div>
+                    </a>
+                </div>
+                
+                <div class="link-item">
+                    <a href="#">
+                        <div class="link-title">
+                            <div class="link-icon">📅</div>
+                            <span>Termine & Veranstaltungen</span>
+                        </div>
+                        <div class="link-arrow">→</div>
+                    </a>
+                </div>
+                
+                <div class="link-item">
+                    <a href="#">
+                        <div class="link-title">
+                            <div class="link-icon">📰</div>
+                            <span>Aktuelles aus Kray-Leithe</span>
+                        </div>
+                        <div class="link-arrow">→</div>
+                    </a>
+                </div>
+                
+                <div class="link-item">
+                    <a href="#">
+                        <div class="link-title">
+                            <div class="link-icon">📹</div>
+                            <span>Videobotschaften</span>
+                        </div>
+                        <div class="link-arrow">→</div>
+                    </a>
+                </div>
+                
+                <div class="link-item">
+                    <a href="#">
+                        <div class="link-title">
+                            <div class="link-icon">📑</div>
+                            <span>Erfolge & Projekte</span>
+                        </div>
+                        <div class="link-arrow">→</div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <h2 class="section-title contact-title">Kontakt</h2>
+            <div class="contact-container">
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <span>0201 12345678</span>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <span>anna.kuhs@cdu-essen.de</span>
+                </div>
+            </div>
+            
+            <div class="social-links">
+                <a href="#" class="social-link">f</a>
+                <a href="#" class="social-link">i</a>
+                <a href="#" class="social-link">t</a>
+                <a href="#" class="social-link">y</a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            &copy; 2025 CDU Essen-Kray | Alle Rechte vorbehalten
+        </footer>
+    </div>
+
+    <script>
+        // Script to handle video play functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const playButton = document.querySelector('.play-button');
+            const video = document.querySelector('video');
+            
+            if (playButton && video) {
+                playButton.addEventListener('click', function() {
+                    video.play();
+                    playButton.style.display = 'none';
+                });
+                
+                video.addEventListener('pause', function() {
+                    playButton.style.display = 'flex';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
