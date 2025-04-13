@@ -48,7 +48,7 @@ body {
 }
 
 .logo {
-    height: 40px;
+    height: 30px;
 }
 
 /* Profile Section */
@@ -205,6 +205,12 @@ body {
 .video-container video {
     width: 100%;
     display: block;
+}
+
+.video-container iframe {
+    width: 100%;
+    height: 315px; /* Standardhöhe für YouTube-Videos */
+    border: none;
 }
 
 .play-button {
@@ -571,8 +577,8 @@ body {
     position: absolute;
     top: 20px;
     right: 20px;
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     background-color: var(--union-gold);
     border-radius: 50%;
     display: flex;
@@ -581,7 +587,7 @@ body {
     justify-content: center;
     color: var(--rhondorf-blau);
     font-weight: 700;
-    font-size: 14px;
+    font-size: 16px;
     text-align: center;
     line-height: 1.2;
     transform: rotate(10deg);
