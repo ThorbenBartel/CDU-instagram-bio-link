@@ -11,6 +11,14 @@
     
 </head>
 <body>
+ <div id="passwordPrompt">
+    <h2>Diese Seite ist passwortgeschützt</h2>
+    <input type="password" id="passwordInput" placeholder="Passwort eingeben">
+    <button onclick="checkPassword()">Einloggen</button>
+    <p id="errorMsg" style="color: red;"></p>
+  </div>
+    
+
     <div class="container">
         <!-- Header with logo -->
         <header class="header">
