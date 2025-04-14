@@ -536,6 +536,24 @@ body {
     color: var(--white);
 }
 
+/* Instagram Feed Section styling */
+.instagram-feed-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+}
+.instagram-feed-container a {
+    display: block;
+    overflow: hidden;
+    border-radius: 8px;
+}
+.instagram-feed-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
 .social-links {
     display: flex;
     justify-content: center;
