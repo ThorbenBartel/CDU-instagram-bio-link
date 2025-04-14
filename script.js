@@ -42,13 +42,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 function checkPassword() {
-      const correctPassword = "Bartel2025#"; // Passwort hier ändern
-      const input = document.getElementById("password").value;
-      if (input === correctPassword) {
-        document.getElementById("login").style.display = "none";
-        document.getElementById("content").style.display = "block";
+      const correctPassword = atob("Bartel2025"); // Base64 von "secret123"
+      const userInput = document.getElementById("passwordInput").value;
+
+      if (userInput === correctPassword) {
+        document.getElementById("passwordPrompt").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
       } else {
-        document.getElementById("message").textContent = "Falsches Passwort!";
+        document.getElementById("errorMsg").textContent = "Falsches Passwort.";
       }
     }
-  </sc
+  
+
+
