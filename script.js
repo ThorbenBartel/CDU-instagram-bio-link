@@ -39,3 +39,16 @@ document.addEventListener('DOMContentLoaded', function() {
   // });
 
 }); // <-- This closing brace was missing
+
+
+function checkPassword() {
+      const correctPassword = "Bartel2025#"; // Passwort hier ändern
+      const input = document.getElementById("password").value;
+      if (input === correctPassword) {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("content").style.display = "block";
+      } else {
+        document.getElementById("message").textContent = "Falsches Passwort!";
+      }
+    }
+  </sc
