@@ -11,12 +11,13 @@
     
 </head>
 <body>
-    <div id="login">
-        <h2>Bitte Passwort eingeben</h2>
-        <input type="password" id="password" placeholder="Passwort">
-        <button onclick="checkPassword()">Login</button>
-        <p id="message" style="color:red;"></p>
-    </div>
+ <div id="passwordPrompt">
+    <h2>Diese Seite ist passwortgeschützt</h2>
+    <input type="password" id="passwordInput" placeholder="Passwort eingeben">
+    <button onclick="checkPassword()">Einloggen</button>
+    <p id="errorMsg" style="color: red;"></p>
+  </div>
+    
 
     <div class="container">
         <!-- Header with logo -->
