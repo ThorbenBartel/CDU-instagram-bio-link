@@ -28,14 +28,3 @@ function updateCountdown() {
 // Countdown jede Sekunde aktualisieren
 const countdownInterval = setInterval(updateCountdown, 1000);
 updateCountdown();
-
-document.addEventListener('DOMContentLoaded', function() {
-  const playButton = document.querySelector('.play-button');
-  const video = document.querySelector('video');
-
-  // Example of how to handle the play button and video (add your logic here)
-  // playButton.addEventListener('click', function() {
-  //   video.play();
-  // });
-
-}); // <-- This closing brace was missing
