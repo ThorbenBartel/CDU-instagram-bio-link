@@ -580,6 +580,7 @@ body {
     background-color: var(--union-gold);
 }
 
+
 /* Footer */
 .footer {
     background-color: var(--white);
@@ -611,6 +612,45 @@ body {
     transform: rotate(10deg);
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     z-index: 5;
+}
+
+/* Scroll Banner */
+.scroll-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: var(--rhondorf-blau);
+  color: var(--white);
+  overflow: hidden;
+  z-index: 1000;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.scroll-content {
+  display: inline-block;
+  white-space: nowrap;
+  padding-left: 100%;
+  animation: marquee 20s linear infinite;
+  font-weight: bold;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+
+.banner-cta {
+  display: inline-block;
+  background: var(--union-gold);
+  color: var(--rhondorf-blau);
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 0.25em 1em;
+  border-radius: 20px;
+  margin-left: 0.5em;
 }
 
 /* Responsive tweaks */
