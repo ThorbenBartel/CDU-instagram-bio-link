@@ -3,48 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gesagt – Getan | Thomas Kufen Bilanz 2020</title>
+  <title>Gesagt – Getan | Thomas Kufen Bilanz 2020</title>
   <style>
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f5f5f5;
+      background-color: #f0f2f5;
       color: #333;
+      line-height: 1.6;
     }
     .container {
-      position: relative;
-      width: 100%;
       max-width: 900px;
-      margin: 0 auto;
-      padding: 50px 20px;
+      margin: auto;
+      padding: 40px 20px;
     }
     .header {
       text-align: center;
       margin-bottom: 40px;
     }
     .header img.logo {
-      max-width: 200px;
+      width: 180px;
+      margin-bottom: 16px;
     }
     .header h1 {
-      margin: 10px 0 5px;
-      font-size: 36px;
+      font-size: 2.25rem;
       color: #222;
+      margin: 0;
+      font-weight: 700;
       text-transform: lowercase;
     }
     .header p {
-      margin: 0;
-      font-size: 18px;
+      font-size: 1rem;
       color: #666;
+      margin: 8px 0 0;
     }
     .timeline {
       position: relative;
-      padding-left: 60px;
+      padding-left: 120px;
+      margin-top: 20px;
     }
     .timeline::before {
       content: '';
       position: absolute;
-      left: 30px;
+      left: 90px;
       top: 0;
       bottom: 0;
       width: 2px;
@@ -52,82 +55,83 @@
     }
     .timeline-item {
       position: relative;
-      margin-bottom: 50px;
+      margin-bottom: 80px;
     }
-    .timeline-item:last-child {
-      margin-bottom: 20px;
+    .timeline-item::before {
+      content: attr(data-num);
+      position: absolute;
+      left: 20px;
+      top: -10px;
+      font-size: 100px;
+      color: rgba(0,0,0,0.05);
+      line-height: 1;
+      z-index: 0;
     }
     .icon {
       position: absolute;
-      left: 0;
+      left: 62px;
       top: 0;
-      width: 60px;
-      height: 60px;
+      width: 56px;
+      height: 56px;
       background: #fff;
       border: 2px solid #007b8a;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: visible;
+      z-index: 2;
     }
-    .icon img {
-      width: 30px;
-      height: 30px;
-    }
-    .icon .num {
-      position: absolute;
-      bottom: -8px;
-      right: -8px;
-      background: #007b8a;
-      color: #fff;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      font-weight: bold;
-      border: 2px solid #fff;
-    }
+    .icon img { width: 32px; height: 32px; }
     .content {
+      margin-left: 140px;
       background: #fff;
-      padding: 20px;
+      padding: 20px 24px;
       border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      margin-left: 80px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      position: relative;
+      z-index: 1;
     }
     .content h2 {
-      margin-top: 0;
+      margin: 0 0 8px;
+      font-size: 1.25rem;
+      font-weight: 700;
       color: #007b8a;
-      font-size: 24px;
-      border-bottom: 1px solid #007b8a;
-      padding-bottom: 8px;
+      text-transform: uppercase;
+    }
+    .content .subtitle {
+      margin: 0 0 16px;
+      font-size: 1rem;
+      color: #555;
     }
     .content ul {
       list-style: none;
       padding: 0;
-      margin: 15px 0 0;
+      margin: 0;
     }
     .content ul li {
       position: relative;
-      padding-left: 30px;
-      margin-bottom: 10px;
+      padding: 12px 20px;
+      margin-bottom: 12px;
+      background: #fbfbfb;
+      border-left: 4px solid #007b8a;
+      border-radius: 4px;
+      font-size: 0.95rem;
     }
+    .content ul li:last-child { margin-bottom: 0; }
     .content ul li::before {
-      content: '\2713';
+      content: '✓';
       position: absolute;
-      left: 0;
-      top: 0;
+      left: 8px;
+      top: 50%;
+      transform: translateY(-50%);
       color: #007b8a;
-      font-size: 18px;
+      font-size: 1.2rem;
     }
     footer {
       text-align: center;
-      padding: 20px;
-      font-size: 14px;
-      color: #aaa;
+      padding: 20px 0;
+      font-size: 0.875rem;
+      color: #999;
     }
   </style>
 </head>
@@ -135,62 +139,28 @@
   <div class="container">
     <div class="header">
       <img class="logo" src="logo.png" alt="Thomas Kufen Logo">
-      <h1>gesagt – getan</h1>
-      <p>Die Bilanz des 10‑Punkte‑Programms 2020</p>
+      <h1>gesagt – getan</h1>
+      <p>Die Bilanz des 15‑Punkte‑Programms 2020</p>
     </div>
     <div class="timeline">
-      <!-- Beispiel: 15 Punkte -->
-      <!-- Punkt 1 -->
-      <div class="timeline-item">
-        <div class="icon">
-          <img src="icons/zusammenhalt.svg" alt="Zusammenhalt">
-          <span class="num">1</span>
-        </div>
+      <div class="timeline-item" data-num="1">
+        <div class="icon"><img src="icons/zusammenhalt.svg" alt="Zusammenhalt"></div>
         <div class="content">
           <h2>Zusammenhalt stärken</h2>
+          <p class="subtitle">Zentrales Ziel war die Stärkung des Ehrenamts und mehr Bürgerbeteiligung</p>
           <ul>
-            <li>Zentrales Ziel der Essener Stadtpolitik ist, den sozialen Zusammenhalt in allen Stadtteilen nachhaltig zu fördern.</li>
-            <li>Die städtische Arbeit trägt dazu bei, Dialogräume im Quartier zu schaffen und Begegnungen zu ermöglichen.</li>
-            <li>Auch im digitalen Raum haben wir neue Beteiligungsformate etabliert.</li>
-            <li>Unser Motto: Gemeinsam Essen – gemeinsam stark.</li>
+            <li>Die bisherige StadtAgentur habe ich in eine Stabsstelle für Bürgerbeteiligung und Ehrenamt direkt meinem Büro unterstellt.</li>
+            <li>Aufbau eines digitalen Beteiligungsmanagements und Durchführung zahlreicher Beteiligungsformate, wie z. B. Umfeldaufwertung Haus Scheppen oder Trendsportanlagen.</li>
+            <li>Auslobung und Vergabe des „Heimat-Preises NRW“.</li>
+            <li>Durchführung von Engagementforen mit der Ehrenamt Agentur Essen e. V.</li>
+            <li>Seit 2025: Vergabe von Ehrenamtsstipendien für junge Menschen.</li>
+            <li>Schaffung neuer Dialogformate mit ehrenamtlich Tätigen (z. B. Frühstück mit der Stadtgesellschaft).</li>
           </ul>
         </div>
       </div>
-      <!-- Punkt 2 -->
-      <div class="timeline-item">
-        <div class="icon">
-          <img src="icons/gleichstellung.svg" alt="Gleichstellung">
-          <span class="num">2</span>
-        </div>
-        <div class="content">
-          <h2>Gleichstellung & Integration</h2>
-          <ul>
-            <li>Die Auswertung des kommunalen Gleichstellungsprozesses ist abgeschlossen und die ersten Maßnahmen laufen.</li>
-            <li>Neue Sprach- und Integrationskurse wurden erfolgreich gestartet.</li>
-            <li>Interkulturelle Woche und Fachtag Integration sorgten für große Resonanz.</li>
-          </ul>
-        </div>
-      </div>
-      <!-- Punkt 3 -->
-      <div class="timeline-item">
-        <div class="icon">
-          <img src="icons/schule.svg" alt="Schule">
-          <span class="num">3</span>
-        </div>
-        <div class="content">
-          <h2>Schule</h2>
-          <ul>
-            <li>Schulen sind wichtige Orte der Begegnung und Bildung.</li>
-            <li>Wir haben 5 neue Ganztagsgrundschulen eingerichtet.</li>
-            <li>Digitalpakt: Über 4 Mio. € zusätzlich in Ausstattung investiert.</li>
-          </ul>
-        </div>
-      </div>
-      <!-- Für Punkte 4–15 analog: Icon anpassen und <span class="num">4</span>, …,15 -->
+      <!-- Punkte 2 – 15 folgen im gleichen Stil -->
     </div>
-    <footer>
-      &copy; 2020 Thomas Kufen – Alle Rechte vorbehalten
-    </footer>
+    <footer>&copy; 2020 Thomas Kufen – Alle Rechte vorbehalten</footer>
   </div>
 </body>
 </html>
