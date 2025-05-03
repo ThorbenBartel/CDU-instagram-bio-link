@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gesagt – Getan | Thomas Kufen Bilanz 2020</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+    .container {
+      position: relative;
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 50px 20px;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .header img.logo {
+      max-width: 200px;
+    }
+    .header h1 {
+      margin: 10px 0 5px;
+      font-size: 36px;
+      color: #222;
+      text-transform: lowercase;
+    }
+    .header p {
+      margin: 0;
+      font-size: 18px;
+      color: #666;
+    }
+    .timeline {
+      position: relative;
+      padding-left: 60px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 30px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #ccc;
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 50px;
+    }
+    .timeline-item:last-child {
+      margin-bottom: 20px;
+    }
+    .icon {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 60px;
+      height: 60px;
+      background: #fff;
+      border: 2px solid #007b8a;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: visible;
+    }
+    .icon img {
+      width: 30px;
+      height: 30px;
+    }
+    .icon .num {
+      position: absolute;
+      bottom: -8px;
+      right: -8px;
+      background: #007b8a;
+      color: #fff;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: bold;
+      border: 2px solid #fff;
+    }
+    .content {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      margin-left: 80px;
+    }
+    .content h2 {
+      margin-top: 0;
+      color: #007b8a;
+      font-size: 24px;
+      border-bottom: 1px solid #007b8a;
+      padding-bottom: 8px;
+    }
+    .content ul {
+      list-style: none;
+      padding: 0;
+      margin: 15px 0 0;
+    }
+    .content ul li {
+      position: relative;
+      padding-left: 30px;
+      margin-bottom: 10px;
+    }
+    .content ul li::before {
+      content: '\2713';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #007b8a;
+      font-size: 18px;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img class="logo" src="logo.png" alt="Thomas Kufen Logo">
+      <h1>gesagt – getan</h1>
+      <p>Die Bilanz des 10‑Punkte‑Programms 2020</p>
+    </div>
+    <div class="timeline">
+      <!-- Beispiel: 15 Punkte -->
+      <!-- Punkt 1 -->
+      <div class="timeline-item">
+        <div class="icon">
+          <img src="icons/zusammenhalt.svg" alt="Zusammenhalt">
+          <span class="num">1</span>
+        </div>
+        <div class="content">
+          <h2>Zusammenhalt stärken</h2>
+          <ul>
+            <li>Zentrales Ziel der Essener Stadtpolitik ist, den sozialen Zusammenhalt in allen Stadtteilen nachhaltig zu fördern.</li>
+            <li>Die städtische Arbeit trägt dazu bei, Dialogräume im Quartier zu schaffen und Begegnungen zu ermöglichen.</li>
+            <li>Auch im digitalen Raum haben wir neue Beteiligungsformate etabliert.</li>
+            <li>Unser Motto: Gemeinsam Essen – gemeinsam stark.</li>
+          </ul>
+        </div>
+      </div>
+      <!-- Punkt 2 -->
+      <div class="timeline-item">
+        <div class="icon">
+          <img src="icons/gleichstellung.svg" alt="Gleichstellung">
+          <span class="num">2</span>
+        </div>
+        <div class="content">
+          <h2>Gleichstellung & Integration</h2>
+          <ul>
+            <li>Die Auswertung des kommunalen Gleichstellungsprozesses ist abgeschlossen und die ersten Maßnahmen laufen.</li>
+            <li>Neue Sprach- und Integrationskurse wurden erfolgreich gestartet.</li>
+            <li>Interkulturelle Woche und Fachtag Integration sorgten für große Resonanz.</li>
+          </ul>
+        </div>
+      </div>
+      <!-- Punkt 3 -->
+      <div class="timeline-item">
+        <div class="icon">
+          <img src="icons/schule.svg" alt="Schule">
+          <span class="num">3</span>
+        </div>
+        <div class="content">
+          <h2>Schule</h2>
+          <ul>
+            <li>Schulen sind wichtige Orte der Begegnung und Bildung.</li>
+            <li>Wir haben 5 neue Ganztagsgrundschulen eingerichtet.</li>
+            <li>Digitalpakt: Über 4 Mio. € zusätzlich in Ausstattung investiert.</li>
+          </ul>
+        </div>
+      </div>
+      <!-- Für Punkte 4–15 analog: Icon anpassen und <span class="num">4</span>, …,15 -->
+    </div>
+    <footer>
+      &copy; 2020 Thomas Kufen – Alle Rechte vorbehalten
+    </footer>
+  </div>
+</body>
+</html>
