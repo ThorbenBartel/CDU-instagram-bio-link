@@ -5,6 +5,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 var searchMarker = null;
+var suggestionsBox = document.getElementById('address-suggestions');
 
 function searchAddress() {
   var query = document.getElementById('address-input').value;
@@ -31,6 +32,34 @@ function searchAddress() {
 document.getElementById('address-search-btn').addEventListener('click', searchAddress);
 document.getElementById('address-input').addEventListener('keypress', function(e) {
   if (e.key === 'Enter') searchAddress();
+});
+document.getElementById('address-input').addEventListener('input', function(e) {
+  var query = e.target.value;
+  if (query.length < 3) {
+    suggestionsBox.innerHTML = '';
+    return;
+  }
+  fetch('https://nominatim.openstreetmap.org/search?format=json&limit=5&q=' + encodeURIComponent(query))
+    .then(resp => resp.json())
+    .then(results => {
+      suggestionsBox.innerHTML = '';
+      results.forEach(r => {
+        var item = document.createElement('div');
+        item.textContent = r.display_name;
+        item.className = 'suggestion-item';
+        item.addEventListener('click', function() {
+          document.getElementById('address-input').value = r.display_name;
+          suggestionsBox.innerHTML = '';
+          map.setView([parseFloat(r.lat), parseFloat(r.lon)], 14);
+          if (searchMarker) {
+            searchMarker.setLatLng([parseFloat(r.lat), parseFloat(r.lon)]);
+          } else {
+            searchMarker = L.marker([parseFloat(r.lat), parseFloat(r.lon)]).addTo(map);
+          }
+        });
+        suggestionsBox.appendChild(item);
+      });
+    });
 });
 
 fetch('data/essen_wahlbezirke_2020.geojson')

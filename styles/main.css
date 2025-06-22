@@ -578,6 +578,14 @@ body {
     color: white;
 }
 
+/* Blog Section */
+.blog-section {
+    background-color: var(--cadenabbia-turkis-10);
+    padding: 30px 20px;
+    margin-top: 20px;
+    text-align: center;
+}
+
 .contact-title::before {
     background-color: var(--union-gold);
 }
@@ -799,6 +807,7 @@ body {
 }
 
 .search-container {
+    position: relative;
     margin-bottom: 10px;
     display: flex;
     gap: 8px;
@@ -819,6 +828,28 @@ body {
     border-radius: 4px;
     cursor: pointer;
     font-weight: 700;
+}
+
+.suggestions-box {
+    position: absolute;
+    top: calc(100% + 2px);
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid var(--rhondorf-blau-25);
+    border-radius: 4px;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 10;
+}
+
+.suggestion-item {
+    padding: 4px 8px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background-color: var(--cadenabbia-turkis-10);
 }
 
 .map-btn {
