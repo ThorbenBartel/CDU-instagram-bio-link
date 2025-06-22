@@ -4,7 +4,15 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
-const NOMINATIM_BASE = 'https://nominatim.openstreetmap.org/search?format=json&limit=1&q=';
+const NOMINATIM_BASE =
+  'https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&limit=1&q=';
+
+function isAddressInEssen(address) {
+  if (!address || address.country_code !== 'de') return false;
+  const city   = (address.city || address.town || address.village || '').toLowerCase();
+  const county = (address.county || '').toLowerCase();
+  return city.includes('essen') || county.includes('essen');
+}
 
 // 2) Popup-Optionen für dunkles Design (CSS-Klasse „dark-popup“ in eurer styles.css definieren)
 var popupOptions = {
@@ -19,32 +27,34 @@ var addressInput       = document.getElementById('address-input');
 var suggestionsList    = document.getElementById('suggestions-list');
 var searchContainer    = document.querySelector('.search-container');
 
-function searchAddress() {
-  var query = addressInput.value;
+async function searchAddress() {
+  const query = addressInput.value;
   if (!query) return;
-  fetch(NOMINATIM_BASE + encodeURIComponent(query + ', Essen, Deutschland'))
-    .then(resp => resp.json())
-    .then(results => {
-      if (results && results.length) {
-        const info = results[0];
-        const { address } = info;
-        if (address && address.city && address.country_code === 'de' && address.city.toLowerCase() === 'essen') {
-          var lat = parseFloat(info.lat),
-              lon = parseFloat(info.lon);
-          map.setView([lat, lon], 14);
-          if (searchMarker) {
-            searchMarker.setLatLng([lat, lon]);
-          } else {
-            searchMarker = L.marker([lat, lon]).addTo(map);
-          }
+  try {
+    const resp = await fetch(NOMINATIM_BASE + encodeURIComponent(query + ', Essen, Deutschland'));
+    const results = await resp.json();
+
+    if (results && results.length) {
+      const info = results[0];
+      const { address } = info;
+
+      if (isAddressInEssen(address)) {
+        const lat = parseFloat(info.lat);
+        const lon = parseFloat(info.lon);
+        map.setView([lat, lon], 14);
+        if (searchMarker) {
+          searchMarker.setLatLng([lat, lon]);
         } else {
-          alert('Adresse muss in Essen, Deutschland liegen');
+          searchMarker = L.marker([lat, lon]).addTo(map);
         }
-      } else {
-        alert('Adresse muss in Essen, Deutschland liegen');
+        return;
       }
-    })
-    .catch(() => alert('Fehler bei der Adresssuche'));
+    }
+
+    alert('Adresse muss in Essen, Deutschland liegen');
+  } catch (err) {
+    alert('Fehler bei der Adresssuche');
+  }
 }
 
 document.getElementById('address-search-btn').addEventListener('click', searchAddress);
@@ -57,7 +67,7 @@ addressInput.addEventListener('input', function(){
     suggestionsList.innerHTML = '';
     return;
   }
-  fetch('https://nominatim.openstreetmap.org/search?format=json&limit=5&q=' + encodeURIComponent(q + ', Essen, Deutschland'))
+  fetch('https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&limit=5&q=' + encodeURIComponent(q + ', Essen, Deutschland'))
     .then(r => r.json())
     .then(results => {
       suggestionsList.innerHTML = '';
