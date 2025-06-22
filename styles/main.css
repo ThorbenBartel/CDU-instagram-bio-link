@@ -832,3 +832,47 @@ body {
     font-weight: 700;
 }
 
+/* Autocomplete Suggestions */
+.search-container {
+    position: relative;
+}
+
+.suggestions-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    border: 1px solid var(--rhondorf-blau-25);
+    border-top: none;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.suggestion-item {
+    padding: 6px 8px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background-color: var(--cadenabbia-turkis-10);
+}
+
+/* Blog embed */
+.blog-section {
+    background-color: var(--white);
+    padding: 30px 20px;
+    margin-top: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.blog-iframe {
+    width: 100%;
+    height: 600px;
+    border: none;
+}
+
