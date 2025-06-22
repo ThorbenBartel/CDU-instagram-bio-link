@@ -4,6 +4,8 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+const NOMINATIM_BASE = 'https://nominatim.openstreetmap.org/search?format=json&limit=1&q=';
+
 // 2) Popup-Optionen für dunkles Design (CSS-Klasse „dark-popup“ in eurer styles.css definieren)
 var popupOptions = {
   className: 'dark-popup',
@@ -20,17 +22,23 @@ var searchContainer    = document.querySelector('.search-container');
 function searchAddress() {
   var query = addressInput.value;
   if (!query) return;
-  fetch(NOMINATIM_BASE + encodeURIComponent(query + ', Essen'))
+  fetch(NOMINATIM_BASE + encodeURIComponent(query + ', Essen, Deutschland'))
     .then(resp => resp.json())
     .then(results => {
       if (results && results.length) {
-        var lat = parseFloat(results[0].lat),
-            lon = parseFloat(results[0].lon);
-        map.setView([lat, lon], 14);
-        if (searchMarker) {
-          searchMarker.setLatLng([lat, lon]);
+        const info = results[0];
+        const { address } = info;
+        if (address && address.city && address.country_code === 'de' && address.city.toLowerCase() === 'essen') {
+          var lat = parseFloat(info.lat),
+              lon = parseFloat(info.lon);
+          map.setView([lat, lon], 14);
+          if (searchMarker) {
+            searchMarker.setLatLng([lat, lon]);
+          } else {
+            searchMarker = L.marker([lat, lon]).addTo(map);
+          }
         } else {
-          searchMarker = L.marker([lat, lon]).addTo(map);
+          alert('Adresse muss in Essen, Deutschland liegen');
         }
       } else {
         alert('Adresse muss in Essen, Deutschland liegen');
@@ -49,16 +57,16 @@ addressInput.addEventListener('input', function(){
     suggestionsList.innerHTML = '';
     return;
   }
-  fetch('https://nominatim.openstreetmap.org/search?format=json&limit=5&q=' + encodeURIComponent(q))
+  fetch('https://nominatim.openstreetmap.org/search?format=json&limit=5&q=' + encodeURIComponent(q + ', Essen, Deutschland'))
     .then(r => r.json())
     .then(results => {
       suggestionsList.innerHTML = '';
       results.forEach(function(res){
         var li = document.createElement('li');
-        li.textContent = result.display_name;
+        li.textContent = res.display_name;
         li.className = 'suggestion-item';
         li.addEventListener('click', function() {
-          addressInput.value = result.display_name;
+          addressInput.value = res.display_name;
           suggestionsList.innerHTML = '';
           searchAddress();
         });
