@@ -9,15 +9,21 @@ var addressInput = document.getElementById('address-input');
 var suggestionsList = document.getElementById('suggestions-list');
 var searchContainer = document.querySelector('.search-container');
 
+// Nominatim base URL restricted to Essen, Germany
+var NOMINATIM_BASE = 'https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&limit=5&countrycodes=de&viewbox=6.8,51.6,7.1,51.3&bounded=1&q=';
+
 function searchAddress() {
-  var query = document.getElementById('address-input').value;
+  var query = addressInput.value;
   if (!query) return;
-  fetch('https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(query))
+  fetch(NOMINATIM_BASE + encodeURIComponent(query + ', Essen'))
     .then(resp => resp.json())
     .then(results => {
-      if (results && results.length > 0) {
-        var lat = parseFloat(results[0].lat);
-        var lon = parseFloat(results[0].lon);
+      var essenResults = results.filter(function(r) {
+        return r.address && (r.address.city === 'Essen' || r.address.town === 'Essen' || r.display_name.includes('Essen'));
+      });
+      if (essenResults.length > 0) {
+        var lat = parseFloat(essenResults[0].lat);
+        var lon = parseFloat(essenResults[0].lon);
         map.setView([lat, lon], 14);
         if (searchMarker) {
           searchMarker.setLatLng([lat, lon]);
@@ -25,7 +31,7 @@ function searchAddress() {
           searchMarker = L.marker([lat, lon]).addTo(map);
         }
       } else {
-        alert('Adresse nicht gefunden');
+        alert('Adresse muss in Essen, Deutschland liegen');
       }
     })
     .catch(() => alert('Fehler bei der Adresssuche'));
@@ -39,11 +45,12 @@ addressInput.addEventListener('keypress', function(e) {
 addressInput.addEventListener('input', function() {
   var query = addressInput.value;
   if (query.length < 3) { suggestionsList.innerHTML = ''; return; }
-  fetch('https://nominatim.openstreetmap.org/search?format=json&limit=5&q=' + encodeURIComponent(query))
+  fetch(NOMINATIM_BASE + encodeURIComponent(query + ', Essen'))
     .then(resp => resp.json())
     .then(results => {
       suggestionsList.innerHTML = '';
       results.forEach(function(result) {
+        if (!(result.address && (result.address.city === 'Essen' || result.address.town === 'Essen' || result.display_name.includes('Essen')))) return;
         var li = document.createElement('li');
         li.textContent = result.display_name;
         li.className = 'suggestion-item';
