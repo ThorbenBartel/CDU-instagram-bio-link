@@ -3,101 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anna Kuhs | CDU Essen-Kray</title>
+    <title>Kommunalwahl Essen 2020</title>
     <link rel="stylesheet" href="styles/main.css">
-    <script src="scripts/main.js" defer></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="scripts/home.js" defer></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/inter-ui/3.19.3/inter.css" rel="stylesheet">
+    <script src="scripts/main.js" defer></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/IBM-Plex-Serif/4.0.3/fonts/complete/woff/IBMPlexSerif-Regular.woff" rel="stylesheet">
-    
 </head>
 <body>
-
-    
-
     <div class="container">
-        <!-- Header with logo -->
         <header class="header">
             <img src="medien/CDU-Gesamtlogo_transparent_RGB.png" alt="CDU Logo" class="logo">
         </header>
 
-        <!-- Profile section -->
         <section class="profile-section">
             <div class="profile-top">
                 <div class="profile-content">
-                    <div class="profile-frame">
-                        <img src="medien/Anna_Kuhs_KVV.jpg" alt="Anna Kuhs" class="profile-img">
-                    </div>
+                    <h1 class="headline">Kommunalwahl 2020</h1>
+                    <div class="subline serif">Finden Sie Ihren Wahlkreis</div>
                 </div>
-                
-                <!-- CDU Bogen design element -->
                 <svg class="bogen" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
                     <path d="M300 0V300H0C0 134.315 134.315 0 300 0Z" fill="white"/>
                 </svg>
-                
-                <!-- Gold circle CTA -->
                 <div class="cta-circle">
                     BEIDE<br>STIMMEN<br>CDU
                 </div>
             </div>
-            
-            <div class="name-container">
-                <h1 class="headline">Anna Kuhs</h1>
-                <div class="subline serif">CDU Ratskandidatin Kray-Leithe</div>
-            </div>
         </section>
 
-        <!-- Personal Section -->
-        <section class="personal-section">
-            <h2 class="section-title">Persönlich</h2>
-            <p class="personal-text">Geboren und aufgewachsen in Essen-Kray, liegt mir unser Stadtteil besonders am Herzen. Als junge Frau und engagierte Bürgerin kenne ich die täglichen Herausforderungen unserer Gemeinde und setze mich für konkrete Lösungen ein.</p>
-            <!-- Lücke -->
-            <div class="priorities">
-                <div class="priority-item">
-                    <div class="priority-icon">🏘️</div>
-                    <span class="priority-text">Moderne Stadtentwicklung für Kray</span>
-                </div>
-                <div class="priority-item">
-                    <div class="priority-icon">🤝</div>
-                    <span class="priority-text">Starke Nachbarschaftsgemeinschaft</span>
-                </div>
-                <div class="priority-item">
-                    <div class="priority-icon">🚌</div>
-                    <span class="priority-text">Bessere Verkehrsanbindung</span>
-                </div>
+        <section class="personal-section map-section">
+            <h2 class="section-title">Ihr Wahlbezirk</h2>
+            <div class="search-container">
+                <input type="text" id="address-input" placeholder="Adresse suchen">
+                <button id="address-search-btn">Suchen</button>
+                <ul id="suggestions-list" class="suggestions-list"></ul>
             </div>
-
+            <div id="map" style="height: 400px;"></div>
         </section>
 
-        <!-- Video Section -->
-        <section class="video-section">
-            <h2 class="section-title">Meine Vision für Kray</h2>
-            <div class="video-container">
-                <iframe 
-                    src="https://www.youtube.com/embed/mJyQxjvxvGk" 
-                    title="Meine Vision für Kray" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen 
-                    class="video">
-                </iframe>
-            </div>
-            <p class="about-text serif">Mit meiner Erfahrung aus Kommunikation und Politik setze ich mich für Essen-Kray ein. Meine drei Schwerpunkte sind moderne Stadtentwicklung, lebendige Gemeinschaft und zukunftsfähige Verkehrskonzepte für unseren Stadtteil. Gemeinsam können wir Kray-Leithe voranbringen!</p>
-        </section>
-
-        <!-- Instagram Feed Section -->
-        <section class="calendar-section">
-            <h2 class="section-title">Folgen Sie mir</h2>
-            <div id="instagram-feed" class="instagram-feed-container">
-                <!-- Posts werden hier per JavaScript eingefügt -->
-
-<div id="ft-insta-app"></div><script type="module">import App from "https://cdn.fouita.com/public/instagram-feed.js?11";new App({target: document.getElementById("ft-insta-app"),props:{"settings":{"layout":"masonry","source":"insta","selected":"uname","header":false,"autoplay":false,"zigzag":false,"cols":2,"cardHeight":600,"gap":0,"direction":"down","height":1200,"bgColor":"","txtColor":"","ukey":"a58f421c-58be-488f-a17a-edda80191e98","headerWidth":12}}});</script><div id="ft-insta-brd"><a href="https://fouita.com/website-widgets/instagram-feed" target="_blank">Embed Instagram Feed</a><a href="https://fouita.com" target="_blank">with Fouita</a></div>                
-         </div>
-            <div class="instagram-cta">
-                <a href="https://www.instagram.com/anna.marie.kuhs" target="_blank">@anna.marie.kuhs → Instagram</a>
-            </div>
-        </section>
-
-        <!-- Counter Section -->
         <section class="counter-section">
             <div class="counter-title">Noch bis zur Kommunalwahl:</div>
             <div class="counter-container">
@@ -121,17 +66,6 @@
             <div class="counter-message">Gemeinsam für einen starken Stadtteil – Ihre Stimme zählt!</div>
         </section>
 
-        <!-- Calendar Section -->
-        <section class="calendar-section">
-            <h2 class="section-title">Termine</h2>
-            <div class="calendar-container">
-                <!-- Google Kalender Einbettung -->
-                <iframe src="https://calendar.google.com/calendar/embed?src=07b152332f776b96b5ea614f691f1ffb0039e37711d41a7c4b80b7bc76ea73ba%40group.calendar.google.com&ctz=Europe%2FBerlin" 
-                style="border: 0" width="100%" height="400" frameborder="0" scrolling="no"></iframe>
-            </div>
-        </section>
-
-        <!-- Cooperation with Thomas Kufen Section -->
         <section class="cooperation-section">
             <h2 class="section-title">Gemeinsam für Essen</h2>
             <div class="cooperation-grid">
@@ -140,7 +74,7 @@
                 </div>
                 <div class="cooperation-content">
                     <h3>Mit OB Thomas Kufen</h3>
-                    <p class="cooperation-quote">"Anna Kuhs ist die richtige Wahl für Kray-Leithe. Mit ihrer Expertise und ihrem Engagement wird sie eine starke Stimme für unseren Stadtteil sein."</p>
+                    <p class="cooperation-quote">"Mich treibt an, das Leben der Essenerinnen und Essener jeden Tag ein Stück besser zu machen. Die Lösung alltäglicher Probleme liegt mir genauso am Herzen wie die sichere und nachhaltige Zukunftsgestaltung unserer Stadt."</p>
                     <a href="http://www.kufen2025.de" class="cooperation-cta" target="_blank" rel="noopener noreferrer">Mehr über unsere Zusammenarbeit</a>
                 </div>
             </div>
@@ -150,47 +84,17 @@
                 <path d="M300 0V300H0C0 134.315 134.315 0 300 0Z" fill="white"/>
             </svg>
         </section>
-        
-        <!-- Contact Section -->
-        <section class="contact-section">
-            <h2 class="section-title contact-title">Kontakt</h2>
-            <div class="contact-container">
-                <div class="contact-item">
-                    <div class="contact-icon">📱</div>
-                    <span>0201 12345678</span>
-                </div>
-                
-                <div class="contact-item">
-                    <div class="contact-icon">✉️</div>
-                    <span>anna.kuhs@cdu-essen.de</span>
-                </div>
 
-                <div class="contact-item">
-                    <div class="contact-icon">📍</div>
-                    <span>CDU-Bürgerbüro, Krayer Str. 110, 45307 Essen</span>
-                </div>
-            </div>
-            
-            <div class="social-links">
-                <a href="#" class="social-link">f</a>
-                <a href="#" class="social-link">i</a>
-                <a href="#" class="social-link">t</a>
-                <a href="#" class="social-link">y</a>
-            </div>
-        </section>
-
-        <!-- Footer -->
         <footer class="footer">
             &copy; 2025 CDU Essen | <a href="#" style="color: var(--rhondorf-blau);">Impressum</a> | <a href="#" style="color: var(--rhondorf-blau);">Datenschutz</a>
         </footer>
     </div>
 
-    <!-- ganz unten, direkt vor </body> einfügen -->
-<div class="scroll-banner">
-    <div class="scroll-content">
-      Sonntag, 14. September – Wahltag von 8 bis 18 Uhr sind die Wahllokale Geöffnet oder jetzt schon per 
-      <a href="URL_ZUR_BRIEFWAHL" class="banner-cta">Briefwahl</a>.
+    <div class="scroll-banner">
+        <div class="scroll-content">
+            Sonntag, 14.&nbsp;September – Wahltag von 8 bis 18&nbsp;Uhr sind die Wahllokale geöffnet oder jetzt schon per
+            <a href="URL_ZUR_BRIEFWAHL" class="banner-cta">Briefwahl</a>.
+        </div>
     </div>
-  </div>
 </body>
 </html>
