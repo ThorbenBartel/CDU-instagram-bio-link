@@ -790,3 +790,22 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+/* Map Section */
+.map-section #map {
+    border: 3px solid var(--rhondorf-blau);
+    border-radius: 8px;
+    height: 400px;
+}
+
+.map-btn {
+    display: inline-block;
+    margin-top: 8px;
+    background-color: var(--union-gold);
+    color: var(--rhondorf-blau);
+    padding: 6px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 700;
+}
+
