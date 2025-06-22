@@ -65,7 +65,7 @@ document.addEventListener('click', function(e) {
 
 addressInput.addEventListener('change', searchAddress);
 
-fetch('data/essen_wahlbezirke_2020.geojson')
+fetch('data/Essen-Stadtteile-map.geojson')
   .then(resp => resp.json())
   .then(data => {
     L.geoJSON(data, {
