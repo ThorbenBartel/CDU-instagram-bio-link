@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kommunalwahl Essen 2020</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="scripts/home.js" defer></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/inter-ui/3.19.3/inter.css" rel="stylesheet">
+    <script src="scripts/main.js" defer></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/IBM-Plex-Serif/4.0.3/fonts/complete/woff/IBMPlexSerif-Regular.woff" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <img src="medien/CDU-Gesamtlogo_transparent_RGB.png" alt="CDU Logo" class="logo">
+        </header>
+
+        <section class="profile-section">
+            <div class="profile-top">
+                <div class="profile-content">
+                    <h1 class="headline">Kommunalwahl 2020</h1>
+                    <div class="subline serif">Finden Sie Ihren Wahlkreis</div>
+                </div>
+                <svg class="bogen" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M300 0V300H0C0 134.315 134.315 0 300 0Z" fill="white"/>
+                </svg>
+                <div class="cta-circle">
+                    BEIDE<br>STIMMEN<br>CDU
+                </div>
+            </div>
+        </section>
+
+        <section class="personal-section map-section">
+            <h2 class="section-title">Ihr Wahlbezirk</h2>
+            <div id="map" style="height: 400px;"></div>
+        </section>
+
+        <footer class="footer">
+            &copy; 2025 CDU Essen | <a href="#" style="color: var(--rhondorf-blau);">Impressum</a> | <a href="#" style="color: var(--rhondorf-blau);">Datenschutz</a>
+        </footer>
+    </div>
+
+    <div class="scroll-banner">
+        <div class="scroll-content">
+            Sonntag, 14.&nbsp;September – Wahltag von 8 bis 18&nbsp;Uhr sind die Wahllokale geöffnet oder jetzt schon per
+            <a href="URL_ZUR_BRIEFWAHL" class="banner-cta">Briefwahl</a>.
+        </div>
+    </div>
+</body>
+</html>
